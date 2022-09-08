@@ -1,23 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from './componentes/button.jsx';
+import Counter from './componentes/counter.jsx'
+import brainLogo from './imagenes/cerebro-logo.webp';
+import { useState } from 'react';
 
 function App() {
+
+  const [numOfClics, setNumClics] = useState(0);
+
+    const clicHandler = () => {
+      setNumClics(numOfClics + 1);
+    }
+
+    const resetCounter = () => {
+      setNumClics(0);
+    }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='logo-contenedor'>
+        <img
+            className='logo'
+            src={brainLogo} 
+            alt='Logo de cerebro' />
+      </div>
+      <div className='contenedor-principal'>
+        
+        <Counter
+          numOfClics={numOfClics}/>
+
+        <Button
+          text='Clic' 
+          clicButton={true} 
+          clicHandler={clicHandler} />
+
+
+        <Button
+          text='Reset' 
+          clicButton={false}
+          clicHandler={resetCounter} />
+      </div>
     </div>
   );
 }
